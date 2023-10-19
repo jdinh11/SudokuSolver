@@ -28,47 +28,52 @@ def zeros(grid):
             
     return empty_spaces
 
+def backtrack(grid, cells):
+    """Implementing a backtracking process to solve the Sudoku
+    
+    Args:
+    
+        grid(array): the Sudoku grid
+        cells(list of tuples): a list containing the positions of all empty cells
+        
+    Returns:
+    
+    """
+    current = 0
+
+    while current < len(cells):
+        print(cells[current])
+        row, col = cells[current]
+        for num in range(grid[row][col] + 1, 10):
+            
+            if checkNum(grid, num, row, col):
+                grid[row][col] = num
+                current += 1
+                break
+
+        current -= 1
+
 def solution(grid):
     pass
 
-"""def solve(grid):
-    space = empty(grid)
-    
-    if space == None:
-        return True
-    else:
-        row, col = space
-    
-    for i in range(1, 10):
-        if checkNum(grid, i, row, col):
-            return grid
-        
-        grid[row][col] = 0
-
-    return False
-"""        
-
-"""def solve(board):
-    for row in range(9):
-        for col in range(9):
-            if board[row][col] == 0:
-                for num in range(1, 10):
-                    if checkNum(board, row, col, num):
-                        board[row][col] = num
-                        if solve(board):
-                            return True
-                        board[row][col] = 0
-                return False
-    return True
-"""
-
 def checkNum(grid, num, row, col):
-    #check answer against the row
-    for i in range(len(grid[0])):
+    """Verify the solution
+    
+    Args:
+        grid(array): the Sudoku grid
+        num(int): the potential solution
+        row(int): the current row index
+        col(int): the current column index
+
+    Returns:
+        bool: True if the answer is valid and False otherwise 
+    
+    """
+    for i in range(len(grid[0])): # check answer against row
         if (grid[row][i] == num) and col != i:
             return False
         
-    for j in range(len(grid)):
+    for j in range(len(grid)): # check answer against column
         if (grid[j][col] == num) and row != j:
             return False
         
@@ -83,7 +88,9 @@ def checkNum(grid, num, row, col):
     return True
 
 def main(grid):
-    pass
+    empty_cells = zeros(grid)
+    backtrack(grid, empty_cells)
+    return(grid)
         
 if __name__ == "__main__":
     """    grid = [
@@ -110,4 +117,5 @@ if __name__ == "__main__":
         [0, 0, 0, 4, 1, 9, 0, 0, 5],
         [0, 0, 0, 0, 8, 0, 0, 7, 9]
     ]
-    print(main(grid))
+    #printGrid(grid)
+    printGrid(main(grid))
