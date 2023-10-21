@@ -42,16 +42,21 @@ def backtrack(grid, cells):
     current = 0
 
     while current < len(cells):
-        print(cells[current])
         row, col = cells[current]
+        found = False
         for num in range(grid[row][col] + 1, 10):
-            
+
             if checkNum(grid, num, row, col):
+                found = True
                 grid[row][col] = num
                 current += 1
                 break
 
-        current -= 1
+        if not found:
+            current -= 1 
+            grid[row][col] = 0          
+    
+    return grid
 
 def solution(grid):
     pass
@@ -89,8 +94,8 @@ def checkNum(grid, num, row, col):
 
 def main(grid):
     empty_cells = zeros(grid)
-    backtrack(grid, empty_cells)
-    return(grid)
+    grid = backtrack(grid, empty_cells)
+    return grid
         
 if __name__ == "__main__":
     """    grid = [
