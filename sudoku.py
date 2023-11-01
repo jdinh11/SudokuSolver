@@ -1,4 +1,4 @@
-import pygame as pg
+import tkinter as tk
 
 def printGrid(grid):
     """Displays the sudoku board
