@@ -108,21 +108,10 @@ class Solver():
         
         return self.grid
 
-def printGrid(grid):
-    """Displays the sudoku board
-
-    Args:
-        grid(array): the Sudoku grid
-    """
-    for i in range(9):
-        for j in range(9):
-            print(grid[i][j], end= " ")
-        print()
-
-
 def main(grid):
     solver = Solver(grid)
-    return solver.backtrack()
+    solver.backtrack()
+    return solver
         
 if __name__ == "__main__":
     """    grid = [
@@ -150,4 +139,4 @@ if __name__ == "__main__":
         [0, 0, 0, 0, 8, 0, 0, 7, 9]
     ]
     
-    printGrid(main(SUDOKU))
+    main(SUDOKU).printGrid()
